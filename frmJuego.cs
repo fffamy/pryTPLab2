@@ -22,11 +22,11 @@ namespace pryTPLab2
         public frmJuego(string nombre)
         {
             InitializeComponent();
-
             varNombre = nombre;
 
             objEnemigo = new clsEnemigo();
             objJugador = new clsJugador(objEnemigo, this, objEnemigo.timerMover, objEnemigo.timerGeneradorEnemigos);
+
 
             objEnemigo.mover(this);
 

@@ -12,12 +12,14 @@ using System.Data.OleDb;
 
 namespace pryTPLab2
 {
+
     public class clsJugador
     {
+        // Variables y objetos
         private Timer timerDisparo;
-        private List<PictureBox> listaDisparos;      
+        private List<PictureBox> listaDisparos;
         private clsEnemigo objEnemigo;
-        private frmJuego FrmJuego;       
+        private frmJuego FrmJuego;
         private Timer timerMoverEnemigo;
         private Timer timerGeneradorEnemigo;
         private int varPuntaje;
@@ -29,12 +31,12 @@ namespace pryTPLab2
 
         // Constructor
         public clsJugador(clsEnemigo enemigo, frmJuego frmJuego, Timer timerMoverEnemigo, Timer timerGeneradorEnemigo)
-        {            
+        {
             timerDisparo = new Timer();
             timerDisparo.Interval = 1;
             timerDisparo.Tick += timerDisparo_Tick;
 
-            listaDisparos = new List<PictureBox>();            
+            listaDisparos = new List<PictureBox>();
 
             this.objEnemigo = enemigo;
             FrmJuego = frmJuego;
@@ -71,7 +73,7 @@ namespace pryTPLab2
                     break;
 
                 case Keys.Right:
-                    if (pctNave.Right <= 780)
+                    if (pctNave.Right <= 916)
                     {
                         pctNave.Left += 30;
                     }
@@ -127,7 +129,7 @@ namespace pryTPLab2
                 disparo.Top -= 8; // Velocidad
 
                 if (disparo.Top <= 0)
-                {                 
+                {
                     listaDisparos.Remove(disparo);
                     if (disparo.Parent != null)
                     {
@@ -165,10 +167,10 @@ namespace pryTPLab2
                                 enemigo.Parent.Controls.Remove(enemigo);
                             }
                             enemigo.Dispose();
-                            
+
                             break;
-                        }                        
-                    }                    
+                        }
+                    }
                 }
             }
         }
@@ -179,8 +181,10 @@ namespace pryTPLab2
 
         public void colisionNavePrincipal(PictureBox nave, PictureBox vidaUno, PictureBox vidaDos, PictureBox vidaTres, Panel pnlGameOver, PictureBox pctGameOver)
         {
-            Timer timerControlColision = new Timer();
-            timerControlColision.Interval = 200;
+            Timer timerControlColision = new Timer
+            {
+                Interval = 200
+            };
 
             timerControlColision.Tick += (sender, arges) =>
             {
@@ -199,48 +203,33 @@ namespace pryTPLab2
                                     switch (vidasRestantes)
                                     {
                                         case 2:
-                                            // saco vida
                                             FrmJuego.Controls.Remove(vidaTres);
                                             vidaTres.Dispose();
-                                            // saco enemigo
                                             FrmJuego.Controls.Remove(enemigo);
                                             objEnemigo.ObtenerListaEnemigos().Remove(enemigo);
                                             enemigo.Dispose();
-
                                             break;
                                         case 1:
-                                            // saco vida
                                             FrmJuego.Controls.Remove(vidaDos);
                                             vidaDos.Dispose();
-                                            // saco enemigo
                                             FrmJuego.Controls.Remove(enemigo);
                                             objEnemigo.ObtenerListaEnemigos().Remove(enemigo);
                                             enemigo.Dispose();
-
                                             break;
-                                        // GAME OVER
                                         case 0:
-                                            // saco vida
                                             FrmJuego.Controls.Remove(vidaUno);
                                             vidaUno.Dispose();
-
-                                            // saco enemigo
                                             FrmJuego.Controls.Remove(enemigo);
                                             objEnemigo.ObtenerListaEnemigos().Remove(enemigo);
                                             enemigo.Dispose();
-
-                                            // saco la nave principal
                                             FrmJuego.Controls.Remove(nave);
                                             nave.Dispose();
-
                                             gameOver = true;
                                             timerControlColision.Stop();
-
-                                            // llamo funcion de explsion de la nave
                                             explosionNave(nave, pnlGameOver, pctGameOver);
 
                                             // Guardar puntaje en la base de datos
-                                            GuardarPuntajeEnBD(varPuntaje);
+                                            GuardarPuntajeEnBD(varPuntaje, nombresin); // Aquí se pasa el nombre del jugador
 
                                             break;
                                     }
@@ -259,24 +248,24 @@ namespace pryTPLab2
         }
 
         void explosionNave(PictureBox nave, Panel pnlGameOver, PictureBox pctGameOver)
-        {      
+        {
             // detener timers
             timerDisparo.Stop();
-            timerMoverEnemigo.Stop();           
+            timerMoverEnemigo.Stop();
             timerGeneradorEnemigo.Stop();
 
             // creo objeto de explosion
             PictureBox pctExplosionNave = new PictureBox();
             pctExplosionNave.Image = pryTPLab2.Properties.Resources.explosionNave;
-            pctExplosionNave .Size = new Size(99, 85);
+            pctExplosionNave.Size = new Size(99, 85);
             pctExplosionNave.BackColor = Color.Black;
             pctExplosionNave.SizeMode = PictureBoxSizeMode.StretchImage;
             pctExplosionNave.Location = ultimaPosicionNave;
 
             // agrego al formulario
             FrmJuego.Controls.Add(pctExplosionNave);
-            pctExplosionNave.BringToFront();  
-            
+            pctExplosionNave.BringToFront();
+
             SoundPlayer sonidoExplosion = new SoundPlayer();
             sonidoExplosion.Stream = pryTPLab2.Properties.Resources._16_Mistake_Music;
             sonidoExplosion.Play();
@@ -286,13 +275,13 @@ namespace pryTPLab2
             Timer timerExplosionNave = new Timer();
             timerExplosionNave.Interval = 1000;
             timerExplosionNave.Tick += (sender, arges) =>
-            {      
+            {
                 // remuevo objeto de explosion una vez terminado el timer
                 FrmJuego.Controls.Remove(pctExplosionNave);
                 pctExplosionNave.Dispose();
 
-                timerExplosionNave.Stop();                
-               
+                timerExplosionNave.Stop();
+
                 pnlGameOver.Visible = true;
                 pctGameOver.Enabled = true;
                 pnlGameOver.BringToFront();
@@ -317,7 +306,7 @@ namespace pryTPLab2
             rnd.Next(1, 5);
             switch (rnd.Next(1, 5))
             {
-                case 1:                   
+                case 1:
                     sonidoExplosion.Stream = pryTPLab2.Properties.Resources.enemigo_1;
                     sonidoExplosion.Play();
                     sonidoExplosion.Dispose();
@@ -346,21 +335,21 @@ namespace pryTPLab2
                 FrmJuego.Controls.Remove(pctExplosion);
                 pctExplosion.Dispose();
 
-                timerExplosion.Stop();                
+                timerExplosion.Stop();
             };
             timerExplosion.Start();
         }
-        void GuardarPuntajeEnBD(int puntaje)
+        void GuardarPuntajeEnBD(int puntaje, string nombresin)
         {
             try
             {
                 // Consulta SQL para actualizar el puntaje del jugador en la tabla JUGADORES
                 string query = "UPDATE JUGADORES SET Puntaje = @puntaje WHERE Jugador = @jugador";
                 List<OleDbParameter> parametros = new List<OleDbParameter>
-                {
-                    new OleDbParameter("@puntaje", puntaje),
-                    new OleDbParameter("@jugador", nombresin)
-                };
+        {
+            new OleDbParameter("@puntaje", puntaje),
+            new OleDbParameter("@jugador", nombresin)
+        };
 
                 // Ejecutar el comando SQL
                 int filasAfectadas = conexionBD.EjecutarComando(query, parametros);
