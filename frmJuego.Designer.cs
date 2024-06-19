@@ -73,7 +73,7 @@
             // 
             pctNave.BackColor = Color.Black;
             pctNave.Image = Properties.Resources.naveGalagaGod;
-            pctNave.Location = new Point(385, 378);
+            pctNave.Location = new Point(383, 378);
             pctNave.Name = "pctNave";
             pctNave.Size = new Size(67, 60);
             pctNave.SizeMode = PictureBoxSizeMode.StretchImage;

@@ -11,12 +11,16 @@ using System.Media;
 using System.IO;
 using pryTPLab2;
 using System.Security.Cryptography.X509Certificates;
+using System.Data.OleDb;
+using System.Windows.Forms;
 
 namespace pryTPLab2
 {
     public partial class frmMenuJuego : Form
     {
+        private clsConexionBD conexionBD = new clsConexionBD();
         public string varNombre;
+        
         public frmMenuJuego()
         {
             InitializeComponent();
@@ -68,7 +72,20 @@ namespace pryTPLab2
                 {
                     e.Handled = true;
 
-                    varNombre = txtNombre.Text;
+                    varNombre = txtNombre.Text.Trim();
+
+                    if (string.IsNullOrEmpty(varNombre))
+                    {
+                        MessageBox.Show("Por favor, ingrese un nombre válido.");
+                        return;
+                    }
+
+                    // Verificar si el jugador ya existe
+                    if (!JugadorExiste(varNombre))
+                    {
+                        // El jugador no existe, lo insertamos
+                        InsertarJugador(varNombre);
+                    }
 
                     SoundPlayer sonidoInicio = new SoundPlayer();
                     sonidoInicio.Stream = pryTPLab2.Properties.Resources.Inicio_musica;
@@ -80,42 +97,44 @@ namespace pryTPLab2
 
                     pnlJugador.Visible = false;
                     pnlJugador.Enabled = false;
-
                 }
             }
             catch (Exception error)
             {
-                MessageBox.Show("ERROR: " + error);
-                throw;
+                MessageBox.Show("ERROR: " + error.Message);
             }
         }
-        /*
-try
-{
-if (e.KeyCode == Keys.Enter)
-{
-  e.Handled = true;
 
-  varNombresote = txtJugador.Text;
+        private bool JugadorExiste(string nombreJugador)
+        {
+            string query = "SELECT COUNT(*) FROM JUGADORES WHERE Jugadores = @nombreJugador";
+            List<OleDbParameter> parametros = new List<OleDbParameter>
+            {
+                new OleDbParameter("@nombreJugador", nombreJugador)
+            };
 
-  SoundPlayer sonidoInicio = new SoundPlayer();
-  sonidoInicio.Stream = pryTPLab2.Properties.Resources.Inicio_musica;
-  sonidoInicio.Play();
+            using (OleDbDataReader reader = conexionBD.EjecutarConsulta(query, parametros))
+            {
+                if (reader.Read())
+                {
+                    int count = Convert.ToInt32(reader[0]);
+                    return count > 0;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        private void InsertarJugador(string nombreJugador)
+        {
+            string query = "INSERT INTO JUGADORES (Jugadores) VALUES (@nombreJugador)";
+            List<OleDbParameter> parametros = new List<OleDbParameter>
+            {
+                new OleDbParameter("@nombreJugador", nombreJugador)
+            };
 
-  pctFondo.Enabled = true;
-  pictureBox2.Enabled = true;
-  pictureBox3.Enabled = true;
-
-  pnlJugador.Visible = false;
-  pnlJugador.Enabled = false;
-}
-}
-catch (Exception error)
-{
-MessageBox.Show("ERROR: " + error);
-throw;
-}
-*/
-
+            conexionBD.EjecutarComando(query, parametros);
+        }
     }
 }

@@ -31,18 +31,16 @@
             mnsPrincipal = new MenuStrip();
             mnsJuegos = new ToolStripMenuItem();
             mnsGalaga = new ToolStripMenuItem();
-            mnsDatos = new ToolStripMenuItem();
-            mnsJugadores = new ToolStripMenuItem();
+            salirToolStripMenuItem = new ToolStripMenuItem();
             stpBaseDeDatos = new StatusStrip();
             tstpConexionBD = new ToolStripStatusLabel();
-            salirToolStripMenuItem = new ToolStripMenuItem();
             mnsPrincipal.SuspendLayout();
             stpBaseDeDatos.SuspendLayout();
             SuspendLayout();
             // 
             // mnsPrincipal
             // 
-            mnsPrincipal.Items.AddRange(new ToolStripItem[] { mnsJuegos, mnsDatos, salirToolStripMenuItem });
+            mnsPrincipal.Items.AddRange(new ToolStripItem[] { mnsJuegos, salirToolStripMenuItem });
             mnsPrincipal.Location = new Point(0, 0);
             mnsPrincipal.Name = "mnsPrincipal";
             mnsPrincipal.Size = new Size(800, 24);
@@ -59,23 +57,16 @@
             // mnsGalaga
             // 
             mnsGalaga.Name = "mnsGalaga";
-            mnsGalaga.Size = new Size(180, 22);
+            mnsGalaga.Size = new Size(110, 22);
             mnsGalaga.Text = "Galaga";
             mnsGalaga.Click += mnsGalaga_Click;
             // 
-            // mnsDatos
+            // salirToolStripMenuItem
             // 
-            mnsDatos.DropDownItems.AddRange(new ToolStripItem[] { mnsJugadores });
-            mnsDatos.Name = "mnsDatos";
-            mnsDatos.Size = new Size(49, 20);
-            mnsDatos.Text = "Datos";
-            // 
-            // mnsJugadores
-            // 
-            mnsJugadores.Name = "mnsJugadores";
-            mnsJugadores.Size = new Size(180, 22);
-            mnsJugadores.Text = "Jugadores";
-            mnsJugadores.Click += mnsJugadores_Click;
+            salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            salirToolStripMenuItem.Size = new Size(41, 20);
+            salirToolStripMenuItem.Text = "Salir";
+            salirToolStripMenuItem.Click += salirToolStripMenuItem_Click;
             // 
             // stpBaseDeDatos
             // 
@@ -91,13 +82,6 @@
             tstpConexionBD.Name = "tstpConexionBD";
             tstpConexionBD.Size = new Size(0, 17);
             // 
-            // salirToolStripMenuItem
-            // 
-            salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            salirToolStripMenuItem.Size = new Size(41, 20);
-            salirToolStripMenuItem.Text = "Salir";
-            salirToolStripMenuItem.Click += salirToolStripMenuItem_Click;
-            // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -111,7 +95,6 @@
             Name = "frmPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Inicio";
-            Load += frmPrincipal_Load;
             mnsPrincipal.ResumeLayout(false);
             mnsPrincipal.PerformLayout();
             stpBaseDeDatos.ResumeLayout(false);
@@ -127,8 +110,6 @@
         private ToolStripMenuItem mnsGalaga;
         private StatusStrip stpBaseDeDatos;
         private ToolStripStatusLabel tstpConexionBD;
-        private ToolStripMenuItem mnsDatos;
-        private ToolStripMenuItem mnsJugadores;
         private ToolStripMenuItem salirToolStripMenuItem;
     }
 }

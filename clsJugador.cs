@@ -8,6 +8,7 @@ using System.Media;
 using System.Runtime.Intrinsics.X86;
 using Microsoft.VisualBasic;
 using pryTPLab2;
+using System.Data.OleDb;
 
 namespace pryTPLab2
 {
@@ -23,8 +24,8 @@ namespace pryTPLab2
         bool enemigoDestruido = false;
         private Point ultimaPosicionEnemigoDestruido;
         private Point ultimaPosicionNave;
-
-        public string nombresin;               
+        public string nombresin;
+        private clsConexionBD conexionBD; // Agregamos la conexión a la base de datos
 
         // Constructor
         public clsJugador(clsEnemigo enemigo, frmJuego frmJuego, Timer timerMoverEnemigo, Timer timerGeneradorEnemigo)
@@ -40,6 +41,7 @@ namespace pryTPLab2
             this.timerMoverEnemigo = timerMoverEnemigo;
             this.timerGeneradorEnemigo = timerGeneradorEnemigo;
             this.nombresin = frmJuego.varNombre;
+            this.conexionBD = new clsConexionBD(); // Inicializamos la conexión a la base de datos
         }
 
         public Timer TimerDisparo
@@ -96,10 +98,10 @@ namespace pryTPLab2
         {
             PictureBox pctDisparo = new PictureBox(); // Crea una nueva instancia de PictureBox para cada disparo
             pctDisparo.Image = pryTPLab2.Properties.Resources.disparoGod;
-            pctDisparo.Size = new Size(30, 30);
+            pctDisparo.Size = new Size(25, 25);
             pctDisparo.BackColor = Color.Black;
             pctDisparo.SizeMode = PictureBoxSizeMode.StretchImage;
-            pctDisparo.Location = new Point(nave.Location.X + 30, 300);
+            pctDisparo.Location = new Point(nave.Location.X + 21, 350);
             enemigoDestruido = false;
 
             FrmJuego.Controls.Add(pctDisparo);
@@ -187,13 +189,13 @@ namespace pryTPLab2
                     foreach (var enemigo in objEnemigo.ObtenerListaEnemigos())
                     {
                         if (enemigo.Bounds.IntersectsWith(nave.Bounds))
-                        {                               
+                        {
                             if (!colisionDetectada)
                             {
                                 colisionDetectada = true;
                                 if (vidasRestantes > 0)
                                 {
-                                    vidasRestantes--;                                   
+                                    vidasRestantes--;
                                     switch (vidasRestantes)
                                     {
                                         case 2:
@@ -237,9 +239,9 @@ namespace pryTPLab2
                                             // llamo funcion de explsion de la nave
                                             explosionNave(nave, pnlGameOver, pctGameOver);
 
-                                            //BD
-                                            cargarBD();
-                                            
+                                            // Guardar puntaje en la base de datos
+                                            GuardarPuntajeEnBD(varPuntaje);
+
                                             break;
                                     }
                                 }
@@ -255,8 +257,6 @@ namespace pryTPLab2
             };
             timerControlColision.Start();
         }
-
-        
 
         void explosionNave(PictureBox nave, Panel pnlGameOver, PictureBox pctGameOver)
         {      
@@ -350,12 +350,34 @@ namespace pryTPLab2
             };
             timerExplosion.Start();
         }
-    
+        void GuardarPuntajeEnBD(int puntaje)
+        {
+            try
+            {
+                // Consulta SQL para actualizar el puntaje del jugador en la tabla JUGADORES
+                string query = "UPDATE JUGADORES SET Puntaje = @puntaje WHERE Jugador = @jugador";
+                List<OleDbParameter> parametros = new List<OleDbParameter>
+                {
+                    new OleDbParameter("@puntaje", puntaje),
+                    new OleDbParameter("@jugador", nombresin)
+                };
 
-        void cargarBD()
-        {              
-            clsConexionBD objConexionBD = new clsConexionBD();
-            objConexionBD.CargarScore(nombresin, varPuntaje);                      
+                // Ejecutar el comando SQL
+                int filasAfectadas = conexionBD.EjecutarComando(query, parametros);
+
+                if (filasAfectadas > 0)
+                {
+                    MessageBox.Show("Puntaje actualizado exitosamente en la base de datos.");
+                }
+                else
+                {
+                    MessageBox.Show("Error al actualizar el puntaje en la base de datos.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar el puntaje en la base de datos: " + ex.Message);
+            }
         }
     }
 }

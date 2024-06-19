@@ -3,97 +3,71 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-using MySql.Data.MySqlClient;
-using System.Windows.Forms;
 using System.Data;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.Collections;
-using TreeView = System.Windows.Forms.TreeView;
-using pryTPLab2;
+using System.Data.OleDb;
+using System.IO;
 
 namespace pryTPLab2
 {
-    internal class clsConexionBD
+    public class clsConexionBD
     {
-        public static MySqlConnection conex()
-        {
-            string servidor = "Server=roundhouse.proxy.rlwy.net;Port=53029;Database=juegorol;Uid=root;Pwd=GWNvarIttTeUDaNhCHWcxdkOriZAPLEg;";
-            MySqlConnection ConexionBD = new MySqlConnection(servidor);
+        public OleDbConnection conexion = new OleDbConnection();
+        public OleDbCommand comando = new OleDbCommand();
+        public OleDbDataAdapter adaptador = new OleDbDataAdapter();
 
-            try
+        string varCadenaConexion = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Jugadores.accdb";
+
+        public clsConexionBD()
+        {
+            conexion.ConnectionString = varCadenaConexion;
+            comando.Connection = conexion;
+        }
+
+        public void AbrirConexion()
+        {
+            if (conexion.State == ConnectionState.Closed)
             {
-                return ConexionBD;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + ex.StackTrace);
-                return null;
+                conexion.Open();
             }
         }
 
-        public void ConectarBD_Nave(Label lblStatus)
+        public void CerrarConexion()
         {
-            try
+            if (conexion.State == ConnectionState.Open)
             {
-
-                string CadenaConexion = "Server=roundhouse.proxy.rlwy.net;Port=53029;Database=railway;Uid=root;Pwd=GWNvarIttTeUDaNhCHWcxdkOriZAPLEg;";
-
-                MySqlConnection conn = new MySqlConnection(CadenaConexion);
-                conn.Open();
-                lblStatus.Text = "Conecatdo";
-                lblStatus.BackColor = Color.Green;
-
-            }
-            catch (Exception ex)
-            {
-                lblStatus.Text = "Error " + ex.Message;
+                conexion.Close();
             }
         }
 
-        public void ConectarBD_Nave(ToolStripStatusLabel tstpConexionBD)
+        public OleDbDataReader EjecutarConsulta(string query, List<OleDbParameter> parametros = null)
         {
-            try
+            comando.CommandText = query;
+            comando.Parameters.Clear();
+
+            if (parametros != null)
             {
-
-                string CadenaConexion = "Server=roundhouse.proxy.rlwy.net;Port=53029;Database=railway;Uid=root;Pwd=GWNvarIttTeUDaNhCHWcxdkOriZAPLEg;";
-
-                MySqlConnection conn = new MySqlConnection(CadenaConexion);
-                conn.Open();
-
-
+                comando.Parameters.AddRange(parametros.ToArray());
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error " + ex.Message);
-            }
+
+            AbrirConexion();
+            return comando.ExecuteReader();
         }
 
-        public void CargarScore(string Nombre, Int32 Score)
+        public int EjecutarComando(string query, List<OleDbParameter> parametros = null)
         {
-            try
+            comando.CommandText = query;
+            comando.Parameters.Clear();
+
+            if (parametros != null)
             {
-                MySqlConnection ConexionBD = conex();
-                ConexionBD.Open();
-
-                // Query para insertar un dato de texto en la tabla
-                string query = "INSERT INTO Scores (Player, Score) VALUES (@Player, @Puntos)";
-
-                using (MySqlCommand command = new MySqlCommand(query, ConexionBD))
-                {
-                    // Asignar el valor de variables
-                    command.Parameters.AddWithValue("@Player", Nombre);
-                    command.Parameters.AddWithValue("@Puntos", Score);
-
-                    // Ejecutar el comando
-                    command.ExecuteNonQuery();
-
-                }
+                comando.Parameters.AddRange(parametros.ToArray());
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+
+            AbrirConexion();
+            int result = comando.ExecuteNonQuery();
+            CerrarConexion();
+
+            return result;
         }
     }
 }
