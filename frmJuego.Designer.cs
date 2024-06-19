@@ -63,8 +63,9 @@
             pctFondo.Dock = DockStyle.Fill;
             pctFondo.Image = Properties.Resources.galaga_espacio;
             pctFondo.Location = new Point(0, 0);
+            pctFondo.Margin = new Padding(3, 4, 3, 4);
             pctFondo.Name = "pctFondo";
-            pctFondo.Size = new Size(800, 450);
+            pctFondo.Size = new Size(914, 600);
             pctFondo.SizeMode = PictureBoxSizeMode.StretchImage;
             pctFondo.TabIndex = 0;
             pctFondo.TabStop = false;
@@ -73,9 +74,10 @@
             // 
             pctNave.BackColor = Color.Black;
             pctNave.Image = Properties.Resources.naveGalagaGod;
-            pctNave.Location = new Point(383, 378);
+            pctNave.Location = new Point(438, 504);
+            pctNave.Margin = new Padding(3, 4, 3, 4);
             pctNave.Name = "pctNave";
-            pctNave.Size = new Size(67, 60);
+            pctNave.Size = new Size(77, 80);
             pctNave.SizeMode = PictureBoxSizeMode.StretchImage;
             pctNave.TabIndex = 1;
             pctNave.TabStop = false;
@@ -84,11 +86,11 @@
             // 
             lblContador.AutoSize = true;
             lblContador.BackColor = Color.Black;
-            lblContador.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point);
-            lblContador.ForeColor = Color.White;
-            lblContador.Location = new Point(12, 12);
+            lblContador.Font = new Font("Bauhaus 93", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point);
+            lblContador.ForeColor = Color.Lime;
+            lblContador.Location = new Point(14, 16);
             lblContador.Name = "lblContador";
-            lblContador.Size = new Size(55, 13);
+            lblContador.Size = new Size(68, 15);
             lblContador.TabIndex = 2;
             lblContador.Text = "Puntaje = ";
             // 
@@ -99,9 +101,9 @@
             lblSalir.Cursor = Cursors.Hand;
             lblSalir.Font = new Font("Microsoft Sans Serif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
             lblSalir.ForeColor = Color.White;
-            lblSalir.Location = new Point(767, 8);
+            lblSalir.Location = new Point(877, 11);
             lblSalir.Name = "lblSalir";
-            lblSalir.Size = new Size(13, 16);
+            lblSalir.Size = new Size(17, 20);
             lblSalir.TabIndex = 3;
             lblSalir.Text = "x";
             lblSalir.Click += lblSalir_Click;
@@ -110,11 +112,11 @@
             // 
             lblPausa.AutoSize = true;
             lblPausa.BackColor = Color.Black;
-            lblPausa.Font = new Font("Microsoft Sans Serif", 7F, FontStyle.Regular, GraphicsUnit.Point);
-            lblPausa.ForeColor = Color.White;
-            lblPausa.Location = new Point(691, 12);
+            lblPausa.Font = new Font("Bauhaus 93", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point);
+            lblPausa.ForeColor = Color.Red;
+            lblPausa.Location = new Point(790, 16);
             lblPausa.Name = "lblPausa";
-            lblPausa.Size = new Size(37, 13);
+            lblPausa.Size = new Size(42, 15);
             lblPausa.TabIndex = 4;
             lblPausa.Text = "Pausa";
             lblPausa.Click += lblPausa_Click;
@@ -126,9 +128,10 @@
             pnlPausa.Controls.Add(btnSalir);
             pnlPausa.Controls.Add(btnDespausar);
             pnlPausa.Controls.Add(pctLogo);
-            pnlPausa.Location = new Point(292, 74);
+            pnlPausa.Location = new Point(334, 99);
+            pnlPausa.Margin = new Padding(3, 4, 3, 4);
             pnlPausa.Name = "pnlPausa";
-            pnlPausa.Size = new Size(240, 261);
+            pnlPausa.Size = new Size(274, 348);
             pnlPausa.TabIndex = 5;
             pnlPausa.Visible = false;
             // 
@@ -136,11 +139,12 @@
             // 
             btnMenu.Cursor = Cursors.Hand;
             btnMenu.FlatStyle = FlatStyle.Flat;
-            btnMenu.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            btnMenu.Font = new Font("Bauhaus 93", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             btnMenu.ForeColor = Color.White;
-            btnMenu.Location = new Point(59, 167);
+            btnMenu.Location = new Point(67, 223);
+            btnMenu.Margin = new Padding(3, 4, 3, 4);
             btnMenu.Name = "btnMenu";
-            btnMenu.Size = new Size(121, 32);
+            btnMenu.Size = new Size(138, 43);
             btnMenu.TabIndex = 3;
             btnMenu.Text = "Menu";
             btnMenu.UseVisualStyleBackColor = true;
@@ -150,11 +154,12 @@
             // 
             btnSalir.Cursor = Cursors.Hand;
             btnSalir.FlatStyle = FlatStyle.Flat;
-            btnSalir.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSalir.Font = new Font("Bauhaus 93", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             btnSalir.ForeColor = Color.White;
-            btnSalir.Location = new Point(59, 209);
+            btnSalir.Location = new Point(67, 279);
+            btnSalir.Margin = new Padding(3, 4, 3, 4);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(121, 32);
+            btnSalir.Size = new Size(138, 43);
             btnSalir.TabIndex = 2;
             btnSalir.Text = "Cerrar";
             btnSalir.UseVisualStyleBackColor = true;
@@ -164,11 +169,12 @@
             // 
             btnDespausar.Cursor = Cursors.Hand;
             btnDespausar.FlatStyle = FlatStyle.Flat;
-            btnDespausar.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            btnDespausar.Font = new Font("Bauhaus 93", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             btnDespausar.ForeColor = Color.White;
-            btnDespausar.Location = new Point(59, 125);
+            btnDespausar.Location = new Point(67, 167);
+            btnDespausar.Margin = new Padding(3, 4, 3, 4);
             btnDespausar.Name = "btnDespausar";
-            btnDespausar.Size = new Size(121, 32);
+            btnDespausar.Size = new Size(138, 43);
             btnDespausar.TabIndex = 1;
             btnDespausar.Text = "Despausar";
             btnDespausar.UseVisualStyleBackColor = true;
@@ -177,9 +183,10 @@
             // pctLogo
             // 
             pctLogo.Image = Properties.Resources.Galaga_logo_svg_Photoroom_png_Photoroom;
-            pctLogo.Location = new Point(26, 18);
+            pctLogo.Location = new Point(30, 24);
+            pctLogo.Margin = new Padding(3, 4, 3, 4);
             pctLogo.Name = "pctLogo";
-            pctLogo.Size = new Size(188, 96);
+            pctLogo.Size = new Size(215, 128);
             pctLogo.SizeMode = PictureBoxSizeMode.StretchImage;
             pctLogo.TabIndex = 0;
             pctLogo.TabStop = false;
@@ -191,9 +198,10 @@
             // pctVidaUno
             // 
             pctVidaUno.Image = Properties.Resources.corazonBlanco;
-            pctVidaUno.Location = new Point(12, 29);
+            pctVidaUno.Location = new Point(14, 39);
+            pctVidaUno.Margin = new Padding(3, 4, 3, 4);
             pctVidaUno.Name = "pctVidaUno";
-            pctVidaUno.Size = new Size(38, 32);
+            pctVidaUno.Size = new Size(43, 43);
             pctVidaUno.SizeMode = PictureBoxSizeMode.StretchImage;
             pctVidaUno.TabIndex = 6;
             pctVidaUno.TabStop = false;
@@ -201,9 +209,10 @@
             // pctVidaDos
             // 
             pctVidaDos.Image = Properties.Resources.corazonBlanco;
-            pctVidaDos.Location = new Point(56, 29);
+            pctVidaDos.Location = new Point(64, 39);
+            pctVidaDos.Margin = new Padding(3, 4, 3, 4);
             pctVidaDos.Name = "pctVidaDos";
-            pctVidaDos.Size = new Size(38, 32);
+            pctVidaDos.Size = new Size(43, 43);
             pctVidaDos.SizeMode = PictureBoxSizeMode.StretchImage;
             pctVidaDos.TabIndex = 7;
             pctVidaDos.TabStop = false;
@@ -211,9 +220,10 @@
             // pctVidaTres
             // 
             pctVidaTres.Image = Properties.Resources.corazonBlanco;
-            pctVidaTres.Location = new Point(100, 29);
+            pctVidaTres.Location = new Point(114, 39);
+            pctVidaTres.Margin = new Padding(3, 4, 3, 4);
             pctVidaTres.Name = "pctVidaTres";
-            pctVidaTres.Size = new Size(38, 32);
+            pctVidaTres.Size = new Size(43, 43);
             pctVidaTres.SizeMode = PictureBoxSizeMode.StretchImage;
             pctVidaTres.TabIndex = 8;
             pctVidaTres.TabStop = false;
@@ -222,20 +232,22 @@
             // 
             pnlGameOver.Controls.Add(btnReiniciar);
             pnlGameOver.Controls.Add(pctGameOver);
-            pnlGameOver.Location = new Point(220, 129);
+            pnlGameOver.Location = new Point(256, 178);
+            pnlGameOver.Margin = new Padding(3, 4, 3, 4);
             pnlGameOver.Name = "pnlGameOver";
-            pnlGameOver.Size = new Size(389, 175);
+            pnlGameOver.Size = new Size(445, 233);
             pnlGameOver.TabIndex = 9;
             pnlGameOver.Visible = false;
             // 
             // btnReiniciar
             // 
             btnReiniciar.FlatStyle = FlatStyle.Flat;
-            btnReiniciar.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            btnReiniciar.Font = new Font("Bauhaus 93", 9F, FontStyle.Regular, GraphicsUnit.Point);
             btnReiniciar.ForeColor = Color.White;
-            btnReiniciar.Location = new Point(119, 123);
+            btnReiniciar.Location = new Point(136, 164);
+            btnReiniciar.Margin = new Padding(3, 4, 3, 4);
             btnReiniciar.Name = "btnReiniciar";
-            btnReiniciar.Size = new Size(155, 34);
+            btnReiniciar.Size = new Size(177, 45);
             btnReiniciar.TabIndex = 1;
             btnReiniciar.Text = "Volver a Intentarlo";
             btnReiniciar.UseVisualStyleBackColor = true;
@@ -245,19 +257,20 @@
             // 
             pctGameOver.Enabled = false;
             pctGameOver.Image = Properties.Resources.gameOver;
-            pctGameOver.Location = new Point(72, 18);
+            pctGameOver.Location = new Point(82, 24);
+            pctGameOver.Margin = new Padding(3, 4, 3, 4);
             pctGameOver.Name = "pctGameOver";
-            pctGameOver.Size = new Size(240, 88);
+            pctGameOver.Size = new Size(274, 117);
             pctGameOver.SizeMode = PictureBoxSizeMode.CenterImage;
             pctGameOver.TabIndex = 0;
             pctGameOver.TabStop = false;
             // 
             // frmJuego
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
             Controls.Add(pnlGameOver);
             Controls.Add(pctVidaTres);
             Controls.Add(pctVidaDos);
@@ -270,6 +283,7 @@
             Controls.Add(pctFondo);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmJuego";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Galaga";
