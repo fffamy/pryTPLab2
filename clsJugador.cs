@@ -101,7 +101,7 @@ namespace pryTPLab2
             pctDisparo.Size = new Size(25, 25);
             pctDisparo.BackColor = Color.Black;
             pctDisparo.SizeMode = PictureBoxSizeMode.StretchImage;
-            pctDisparo.Location = new Point(nave.Location.X + 21, 350);
+            pctDisparo.Location = new Point(nave.Location.X + 25, 490);
             enemigoDestruido = false;
 
             FrmJuego.Controls.Add(pctDisparo);
