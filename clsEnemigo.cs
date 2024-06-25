@@ -16,7 +16,6 @@ namespace pryTPLab2
         private List<PictureBox> listaEnemigos;
         public PictureBox pctEnemigo;
         public Timer timerGeneradorEnemigos = new Timer();
-        int intervaloInicial = 1500; // Intervalo inicial del temporizador en milisegundos
         int intervaloMinimo = 800; // Intervalo mínimo del temporizador en milisegundos
 
         // Constructor
@@ -57,31 +56,31 @@ namespace pryTPLab2
             switch (rnd.Next(1,8))
             {
                 case 1:
-                    pctEnemigo.Image = pryTPLab2.Properties.Resources.galaga_enemigo_removebg_preview_Photoroom_png_Photoroom;
+                    pctEnemigo.Image = Properties.Resources.galaga_enemigo_removebg_preview_Photoroom_png_Photoroom;
                     pctEnemigo.Size = new Size(50, 50);
                     break;
                 case 2:
-                    pctEnemigo.Image = pryTPLab2.Properties.Resources.galaga_enemigo2_removebg_preview_Photoroom_png_Photoroom;
+                    pctEnemigo.Image = Properties.Resources.galaga_enemigo2_removebg_preview_Photoroom_png_Photoroom;
                     pctEnemigo.Size = new Size(60, 60);
                     break;
                 case 3:
-                    pctEnemigo.Image = pryTPLab2.Properties.Resources.enemigo3;
+                    pctEnemigo.Image = Properties.Resources.enemigo3;
                     pctEnemigo.Size = new Size(50, 50);
                     break;
                 case 4:
-                    pctEnemigo.Image = pryTPLab2.Properties.Resources.enemigo4;
+                    pctEnemigo.Image = Properties.Resources.enemigo4;
                     pctEnemigo.Size = new Size(50, 50);
                     break;
                 case 5:
-                    pctEnemigo.Image = pryTPLab2.Properties.Resources.enemigo5;
+                    pctEnemigo.Image = Properties.Resources.enemigo5;
                     pctEnemigo.Size = new Size(40, 40);
                     break;
                 case 6:
-                    pctEnemigo.Image = pryTPLab2.Properties.Resources.enemigo6;
+                    pctEnemigo.Image = Properties.Resources.enemigo6;
                     pctEnemigo.Size = new Size(50, 50);
                     break;
                 case 7:
-                    pctEnemigo.Image = pryTPLab2.Properties.Resources.enemigo7;
+                    pctEnemigo.Image = Properties.Resources.enemigo7;
                     pctEnemigo.Size = new Size(50, 50);
                     break;               
             }
@@ -112,7 +111,7 @@ namespace pryTPLab2
             {
                 enemigo.Top += 2; // Velocidad
 
-                if (enemigo.Top >= 500)
+                if (enemigo.Top >= 1000)
                 {
                     // Remover el PictureBox del disparo del formulario y de la lista
                     listaEnemigos.Remove(enemigo);

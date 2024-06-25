@@ -31,7 +31,7 @@ namespace pryTPLab2
             objEnemigo.mover(this);
 
             SoundPlayer sonidoAmbiente = new SoundPlayer();
-            sonidoAmbiente.Stream = pryTPLab2.Properties.Resources.Juego_Ambiente;
+            sonidoAmbiente.Stream = Properties.Resources.Juego_Ambiente;
             sonidoAmbiente.Play();
 
             objJugador.colisionNavePrincipal(pctNave, pctVidaUno, pctVidaDos, pctVidaTres, pnlGameOver, pctGameOver);
@@ -130,6 +130,20 @@ namespace pryTPLab2
             frmMenuJuego frmMenuJuego = new frmMenuJuego();
             this.Hide();
             frmMenuJuego.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            frmPrincipal frmPrincipal = new frmPrincipal();
+            this.Hide();
+            frmPrincipal.Show();
         }
     }
 }

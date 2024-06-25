@@ -45,6 +45,8 @@
             pctVidaDos = new PictureBox();
             pctVidaTres = new PictureBox();
             pnlGameOver = new Panel();
+            button2 = new Button();
+            button1 = new Button();
             btnReiniciar = new Button();
             pctGameOver = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pctFondo).BeginInit();
@@ -99,11 +101,11 @@
             lblSalir.AutoSize = true;
             lblSalir.BackColor = Color.Black;
             lblSalir.Cursor = Cursors.Hand;
-            lblSalir.Font = new Font("Microsoft Sans Serif", 9.749999F, FontStyle.Regular, GraphicsUnit.Point);
+            lblSalir.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             lblSalir.ForeColor = Color.White;
-            lblSalir.Location = new Point(877, 11);
+            lblSalir.Location = new Point(874, 1);
             lblSalir.Name = "lblSalir";
-            lblSalir.Size = new Size(17, 20);
+            lblSalir.Size = new Size(28, 32);
             lblSalir.TabIndex = 3;
             lblSalir.Text = "x";
             lblSalir.Click += lblSalir_Click;
@@ -112,11 +114,11 @@
             // 
             lblPausa.AutoSize = true;
             lblPausa.BackColor = Color.Black;
-            lblPausa.Font = new Font("Bauhaus 93", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point);
+            lblPausa.Font = new Font("Bauhaus 93", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             lblPausa.ForeColor = Color.Red;
             lblPausa.Location = new Point(790, 16);
             lblPausa.Name = "lblPausa";
-            lblPausa.Size = new Size(42, 15);
+            lblPausa.Size = new Size(73, 26);
             lblPausa.TabIndex = 4;
             lblPausa.Text = "Pausa";
             lblPausa.Click += lblPausa_Click;
@@ -230,14 +232,46 @@
             // 
             // pnlGameOver
             // 
+            pnlGameOver.Controls.Add(button2);
+            pnlGameOver.Controls.Add(button1);
             pnlGameOver.Controls.Add(btnReiniciar);
             pnlGameOver.Controls.Add(pctGameOver);
-            pnlGameOver.Location = new Point(256, 178);
+            pnlGameOver.Location = new Point(268, 76);
             pnlGameOver.Margin = new Padding(3, 4, 3, 4);
             pnlGameOver.Name = "pnlGameOver";
-            pnlGameOver.Size = new Size(445, 233);
+            pnlGameOver.Size = new Size(445, 367);
             pnlGameOver.TabIndex = 9;
             pnlGameOver.Visible = false;
+            // 
+            // button2
+            // 
+            button2.Cursor = Cursors.Hand;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Bauhaus 93", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(136, 293);
+            button2.Margin = new Padding(3, 4, 3, 4);
+            button2.Name = "button2";
+            button2.Size = new Size(177, 43);
+            button2.TabIndex = 4;
+            button2.Text = "Cerrar Juego";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // button1
+            // 
+            button1.Cursor = Cursors.Hand;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Bauhaus 93", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(136, 227);
+            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Name = "button1";
+            button1.Size = new Size(177, 43);
+            button1.TabIndex = 4;
+            button1.Text = "Menu";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // btnReiniciar
             // 
@@ -320,5 +354,7 @@
         private Panel pnlGameOver;
         private Button btnReiniciar;
         private PictureBox pctGameOver;
+        private Button button2;
+        private Button button1;
     }
 }

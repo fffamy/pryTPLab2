@@ -29,49 +29,32 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
-            mnsPrincipal = new MenuStrip();
-            mnsJuegos = new ToolStripMenuItem();
-            mnsGalaga = new ToolStripMenuItem();
+            dgvPuntaje = new DataGridView();
             stpBaseDeDatos = new StatusStrip();
             tstpConexionBD = new ToolStripStatusLabel();
-            dgvPuntaje = new DataGridView();
-            mnsPrincipal.SuspendLayout();
-            stpBaseDeDatos.SuspendLayout();
+            btnJugar = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvPuntaje).BeginInit();
+            stpBaseDeDatos.SuspendLayout();
             SuspendLayout();
             // 
-            // mnsPrincipal
+            // dgvPuntaje
             // 
-            mnsPrincipal.BackColor = Color.DimGray;
-            mnsPrincipal.ImageScalingSize = new Size(20, 20);
-            mnsPrincipal.Items.AddRange(new ToolStripItem[] { mnsJuegos });
-            mnsPrincipal.Location = new Point(0, 0);
-            mnsPrincipal.Name = "mnsPrincipal";
-            mnsPrincipal.Padding = new Padding(7, 3, 0, 3);
-            mnsPrincipal.Size = new Size(327, 30);
-            mnsPrincipal.TabIndex = 0;
-            mnsPrincipal.Text = "menuStrip1";
-            // 
-            // mnsJuegos
-            // 
-            mnsJuegos.DropDownItems.AddRange(new ToolStripItem[] { mnsGalaga });
-            mnsJuegos.Name = "mnsJuegos";
-            mnsJuegos.Size = new Size(68, 24);
-            mnsJuegos.Text = "Juegos";
-            // 
-            // mnsGalaga
-            // 
-            mnsGalaga.Font = new Font("Bauhaus 93", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            mnsGalaga.Name = "mnsGalaga";
-            mnsGalaga.Size = new Size(224, 26);
-            mnsGalaga.Text = "Galaga";
-            mnsGalaga.Click += mnsGalaga_Click;
+            dgvPuntaje.BackgroundColor = SystemColors.ActiveCaptionText;
+            dgvPuntaje.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvPuntaje.GridColor = Color.Black;
+            dgvPuntaje.Location = new Point(12, 66);
+            dgvPuntaje.Name = "dgvPuntaje";
+            dgvPuntaje.RowHeadersWidth = 51;
+            dgvPuntaje.RowTemplate.Height = 29;
+            dgvPuntaje.Size = new Size(303, 393);
+            dgvPuntaje.TabIndex = 2;
+            dgvPuntaje.CellContentClick += dgvPuntaje_CellContentClick;
             // 
             // stpBaseDeDatos
             // 
             stpBaseDeDatos.ImageScalingSize = new Size(20, 20);
             stpBaseDeDatos.Items.AddRange(new ToolStripItem[] { tstpConexionBD });
-            stpBaseDeDatos.Location = new Point(0, 452);
+            stpBaseDeDatos.Location = new Point(0, 462);
             stpBaseDeDatos.Name = "stpBaseDeDatos";
             stpBaseDeDatos.Padding = new Padding(1, 0, 16, 0);
             stpBaseDeDatos.Size = new Size(327, 22);
@@ -83,50 +66,47 @@
             tstpConexionBD.Name = "tstpConexionBD";
             tstpConexionBD.Size = new Size(0, 16);
             // 
-            // dgvPuntaje
+            // btnJugar
             // 
-            dgvPuntaje.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPuntaje.Location = new Point(12, 43);
-            dgvPuntaje.Name = "dgvPuntaje";
-            dgvPuntaje.RowHeadersWidth = 51;
-            dgvPuntaje.RowTemplate.Height = 29;
-            dgvPuntaje.Size = new Size(303, 393);
-            dgvPuntaje.TabIndex = 2;
+            btnJugar.BackColor = Color.Black;
+            btnJugar.Font = new Font("Bauhaus 93", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            btnJugar.ForeColor = Color.Red;
+            btnJugar.Location = new Point(103, 12);
+            btnJugar.Name = "btnJugar";
+            btnJugar.Size = new Size(135, 46);
+            btnJugar.TabIndex = 3;
+            btnJugar.Text = "JUGAR";
+            btnJugar.UseVisualStyleBackColor = false;
+            btnJugar.Click += btnJugar_Click;
             // 
             // frmPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Desktop;
-            ClientSize = new Size(327, 474);
+            ClientSize = new Size(327, 484);
+            Controls.Add(btnJugar);
             Controls.Add(dgvPuntaje);
             Controls.Add(stpBaseDeDatos);
-            Controls.Add(mnsPrincipal);
             FormBorderStyle = FormBorderStyle.SizableToolWindow;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            MainMenuStrip = mnsPrincipal;
             Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             Name = "frmPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Inicio";
             Load += frmPrincipal_Load;
-            mnsPrincipal.ResumeLayout(false);
-            mnsPrincipal.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvPuntaje).EndInit();
             stpBaseDeDatos.ResumeLayout(false);
             stpBaseDeDatos.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvPuntaje).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private MenuStrip mnsPrincipal;
-        private ToolStripMenuItem mnsJuegos;
-        private ToolStripMenuItem mnsGalaga;
         private StatusStrip stpBaseDeDatos;
         private ToolStripStatusLabel tstpConexionBD;
         private DataGridView dgvPuntaje;
+        private Button btnJugar;
     }
 }

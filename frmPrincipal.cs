@@ -19,9 +19,7 @@ namespace pryTPLab2
 
         private void mnsGalaga_Click(object sender, EventArgs e)
         {
-            frmMenuJuego frmMenuJuego = new frmMenuJuego();
-            this.Hide();
-            frmMenuJuego.Show();
+            
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -64,6 +62,18 @@ namespace pryTPLab2
                 // Manejo de errores
                 MessageBox.Show("Ocurrió un error: " + ex.Message);
             }
+        }
+
+        private void dgvPuntaje_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnJugar_Click(object sender, EventArgs e)
+        {
+            frmMenuJuego frmMenuJuego = new frmMenuJuego();
+            frmMenuJuego.Show();
+            this.Hide();
         }
     }
 }

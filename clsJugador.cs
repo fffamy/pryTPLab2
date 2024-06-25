@@ -93,13 +93,11 @@ namespace pryTPLab2
             }
         }
 
-        PictureBox pctDisparo = new PictureBox();
-
         // Funcion crearDisparo
         void crearDisparo(frmJuego FrmJuego, PictureBox nave)
         {
             PictureBox pctDisparo = new PictureBox(); // Crea una nueva instancia de PictureBox para cada disparo
-            pctDisparo.Image = pryTPLab2.Properties.Resources.disparoGod;
+            pctDisparo.Image = Properties.Resources.disparoGod;
             pctDisparo.Size = new Size(25, 25);
             pctDisparo.BackColor = Color.Black;
             pctDisparo.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -110,7 +108,7 @@ namespace pryTPLab2
             pctDisparo.BringToFront();
 
             SoundPlayer sonidoDisparo = new SoundPlayer();
-            sonidoDisparo.Stream = pryTPLab2.Properties.Resources.disparo_nave;
+            sonidoDisparo.Stream = Properties.Resources.disparo_nave;
             sonidoDisparo.Play();
 
             listaDisparos.Add(pctDisparo); // Agrega el nuevo disparo a la lista
@@ -256,7 +254,7 @@ namespace pryTPLab2
 
             // creo objeto de explosion
             PictureBox pctExplosionNave = new PictureBox();
-            pctExplosionNave.Image = pryTPLab2.Properties.Resources.explosionNave;
+            pctExplosionNave.Image = Properties.Resources.explosionNave;
             pctExplosionNave.Size = new Size(99, 85);
             pctExplosionNave.BackColor = Color.Black;
             pctExplosionNave.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -267,7 +265,7 @@ namespace pryTPLab2
             pctExplosionNave.BringToFront();
 
             SoundPlayer sonidoExplosion = new SoundPlayer();
-            sonidoExplosion.Stream = pryTPLab2.Properties.Resources._16_Mistake_Music;
+            sonidoExplosion.Stream = Properties.Resources._16_Mistake_Music;
             sonidoExplosion.Play();
             sonidoExplosion.Dispose();
 
@@ -292,7 +290,7 @@ namespace pryTPLab2
         void explosionEnemigo()
         {
             PictureBox pctExplosion = new PictureBox();
-            pctExplosion.Image = pryTPLab2.Properties.Resources.explosion_enemigo_2_unscreen;
+            pctExplosion.Image = Properties.Resources.explosion_enemigo_2_unscreen;
             pctExplosion.Size = new Size(50, 50);
             pctExplosion.BackColor = Color.Black;
             pctExplosion.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -307,22 +305,22 @@ namespace pryTPLab2
             switch (rnd.Next(1, 5))
             {
                 case 1:
-                    sonidoExplosion.Stream = pryTPLab2.Properties.Resources.enemigo_1;
+                    sonidoExplosion.Stream = Properties.Resources.enemigo_1;
                     sonidoExplosion.Play();
                     sonidoExplosion.Dispose();
                     break;
                 case 2:
-                    sonidoExplosion.Stream = pryTPLab2.Properties.Resources.enemigo2;
+                    sonidoExplosion.Stream = Properties.Resources.enemigo2;
                     sonidoExplosion.Play();
                     sonidoExplosion.Dispose();
                     break;
                 case 3:
-                    sonidoExplosion.Stream = pryTPLab2.Properties.Resources.enemigo31;
+                    sonidoExplosion.Stream = Properties.Resources.enemigo31;
                     sonidoExplosion.Play();
                     sonidoExplosion.Dispose();
                     break;
                 case 4:
-                    sonidoExplosion.Stream = pryTPLab2.Properties.Resources.enemigo41;
+                    sonidoExplosion.Stream = Properties.Resources.enemigo41;
                     sonidoExplosion.Play();
                     sonidoExplosion.Dispose();
                     break;
@@ -354,18 +352,10 @@ namespace pryTPLab2
                 // Ejecutar el comando SQL
                 int filasAfectadas = conexionBD.EjecutarComando(query, parametros);
 
-                if (filasAfectadas > 0)
-                {
-                    MessageBox.Show("Puntaje actualizado exitosamente en la base de datos.");
-                }
-                else
-                {
-                    MessageBox.Show("Error al actualizar el puntaje en la base de datos.");
-                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al actualizar el puntaje en la base de datos: " + ex.Message);
+                MessageBox.Show("Error al actualizar el puntaje: " + ex.Message);
             }
         }
     }
