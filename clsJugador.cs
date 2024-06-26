@@ -15,6 +15,8 @@ namespace pryTPLab2
 
     public class clsJugador
     {
+
+
         // Variables y objetos
         private Timer timerDisparo;
         private List<PictureBox> listaDisparos;
@@ -352,6 +354,7 @@ namespace pryTPLab2
                 // Ejecutar el comando SQL
                 int filasAfectadas = conexionBD.EjecutarComando(query, parametros);
 
+                
             }
             catch (Exception ex)
             {

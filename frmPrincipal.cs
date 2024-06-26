@@ -38,6 +38,7 @@ namespace pryTPLab2
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             LoadData();
+
         }
         // Método para cargar datos desde la base de datos Access
         private void LoadData()

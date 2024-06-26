@@ -11,6 +11,7 @@ namespace pryTPLab2
 {
     public class clsConexionBD
     {
+
         public OleDbConnection conexion = new OleDbConnection();
         public OleDbCommand comando = new OleDbCommand();
         public OleDbDataAdapter adaptador = new OleDbDataAdapter();
@@ -21,6 +22,7 @@ namespace pryTPLab2
         {
             conexion.ConnectionString = varCadenaConexion;
             comando.Connection = conexion;
+
         }
 
         public void AbrirConexion()

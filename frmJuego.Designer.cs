@@ -88,11 +88,11 @@
             // 
             lblContador.AutoSize = true;
             lblContador.BackColor = Color.Black;
-            lblContador.Font = new Font("Bauhaus 93", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point);
+            lblContador.Font = new Font("Bauhaus 93", 9F, FontStyle.Regular, GraphicsUnit.Point);
             lblContador.ForeColor = Color.Lime;
             lblContador.Location = new Point(14, 16);
             lblContador.Name = "lblContador";
-            lblContador.Size = new Size(68, 15);
+            lblContador.Size = new Size(77, 16);
             lblContador.TabIndex = 2;
             lblContador.Text = "Puntaje = ";
             // 
@@ -116,7 +116,7 @@
             lblPausa.BackColor = Color.Black;
             lblPausa.Font = new Font("Bauhaus 93", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             lblPausa.ForeColor = Color.Red;
-            lblPausa.Location = new Point(790, 16);
+            lblPausa.Location = new Point(795, 7);
             lblPausa.Name = "lblPausa";
             lblPausa.Size = new Size(73, 26);
             lblPausa.TabIndex = 4;
@@ -305,13 +305,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ClientSize = new Size(914, 600);
+            Controls.Add(lblContador);
             Controls.Add(pnlGameOver);
             Controls.Add(pctVidaTres);
             Controls.Add(pctVidaDos);
             Controls.Add(pctVidaUno);
             Controls.Add(lblSalir);
             Controls.Add(lblPausa);
-            Controls.Add(lblContador);
             Controls.Add(pnlPausa);
             Controls.Add(pctNave);
             Controls.Add(pctFondo);
